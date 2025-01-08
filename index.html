@@ -1,1 +1,128 @@
-<h1>Hello Guys!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find</title>
+</head>
+<body>
+    <h1>Find in the PDF dictonary</h1>
+    <input type="text" id="root">
+    <button id="search">Search</button>
+    <h2 id="answer">Check page number</h2>
+    <style>
+        #I{
+            height: 80vh;
+            width: 80vw;
+        }
+    </style>
+    <script defer>
+        const X=document.getElementById("root");
+        const Y=document.getElementById("search");
+        const Z=document.getElementById("answer");
+        const P=
+        [
+            "a","abduct","aborigine","absolute majority","abut","accident","accountable","achievement","acropolis",
+            "acupuncture","adenoids","admiralty","adultery","advice","affect","african","age of consent",
+            "agronomy","aircraft carrier","alarm clock","alien","alleviate","almanac","altercation","amazon",
+            "american indian","ample","analysis","anecdotal","angry","anneal","anomie","anthrax","antirrhinum",
+            "aphid","apparatchik","apple pie order","approachable","aquarius","archangle","aria","aromatic",
+            "art","artwork","asiant","assembly","association","astronomy","atop","attenuate","audio",
+            "australian rules","automation","avow","axle","b","backbone","bacteriology","bail","baleen whale",
+            "banal","bank","bar","barium","barrel organ","basilica","bathroom",
+            "bayonet","bear","beauty queen","beefeater","behalf",
+            "below","benefit","beside","betwixt","bid","billabong","biological","bistro","black and white",
+            "bland","bleary","blindman's bluff","blood brother","blow by blow","blunt","boater","bogie",
+            "bombard","bonsai","boon","boredom","bottom","bountiful","box","brainchild","bravura","break away",
+            "breezy","brig","brit","bronchus","bruiser","bucket","bugbear","bullfinch","bung","burgundy",
+            "busby","buttler","by","c","cadet","calcium","calloused","camouflage","candid","cant","cape","caption",
+            "carbon dioxide","career","carnation","carrycot","case","castanets","catabolism","catch all",
+            "catty","caveat","cell","centimetre","cerebrum","chafe","chamber of commerce","changeable",
+            "characterize","charm","chat room","cheekbone","cheerish","chiefly","china clay","chlorinate",
+            "choppy","chronograph","chyme","circulation","cityscape","clampdown","classicism","clearence",
+            "cliche","clip","closed circuit television","cloying","coagulate","cochineal","coelacmath","coincide",
+            "collagen","collision","colouring","combustible","commandant","commercialism","common ground",
+            "community centre","compass","complaint","compliment","compressed air","concede","conciliate",
+            "condescending","confederation","conflate","congratulate","conning tower","conservatoire",
+            "consortium","consult","contemptible","continuity","contravene","convecter","convincing",
+            "cooperative","copyist","cornflour","correspondence course","cossack","counsel","countersign",
+            "coursework","coverage","crack","cranny","creamery","creek","crew","critic","cropper","crotchet",
+            "crudites","cry","cue","cumbrous","curio","curtain","customs","cyanocobalamin","czechoslovak","d",
+            "dale","dane","dashboard","daylight","deadly nightshade","debauch","decease","decision","decoration",
+            "deductible","defenceless","deflate","deity","delight","demanding","demonize","denominational",
+            "dependent","depressant","dermatitis","deserve","despicable","detail","dete","dev","dia","diap","die",
+            "dif","dig","dim","dip","dir","dis","disc","disco","disd","dish","disl","disp","dispu","diss","dist",
+            "dit","div","do","dog","dol","don","dot","dou","dow","dr","dra","dre","dri","dru","du","dum","dur",
+            "dy","e","ea","eat","ec","ed","ef","ei","el","ele","elo","em","emi","emp","en","end","eng","enl","ent",
+            "entr","ep","epo","eq","er","es","est","et","eu","ev","evi","exc","exci","exd","exh","exo","exp",
+            "expl","expr","ext","extr","ey","f","fa","fah","fai","fal","fan","far","fas","fat","fe","fee","fel",
+            "fer","feu","fi","fif","fil","fin","fini","fir","fis","fix","fl","fla","fle","fli","flo","flow","flu",
+            "fo","fol","foo","for","fore","forew","form","fors","forw","fou","fr","fra","fre","fres","fri","fro",
+            "fru","fu","fun","fur","fus","g","ga","gam","gap","gas","gaun","gel","gen","genu","ger","gh","gi",
+            "giz","gl","glo","glu","go","god","goo","gor","gov","gr","gra","grap","grav","gre","grey","gri","gro",
+            "grou","gru","gu","gul","gur","gy","h","ha","hak","hal","han","hand","hap","har","harm","has","hau",
+            "hb","he","hea","heav","hef","hel","her","hero","hi","hig","hil","hip","hit","ho","hol","hom","hon",
+            "hoo","hor","hos","hot","hou","hu","hum","hun","hy","hym","hyp","i","ic","id","ig","il","im","imm",
+            "imp","impe","impo","impr","impru","in","inc","inco","incon","incu","ind","indi","indu","ine",
+            "inf","infl","infr","inh","inl","inr","ins","inst","instr","inte","inten","inter","intern","inters",
+            "intr","inu","inv","invo","ir","is","it","j","ja","je","jet","jo","jok","ju","jum","jus","k","ke",
+            "ket","ki","kin","kis","kn","kno","kr","l","la","lad","lam","lan","lar","las","lau","law","laz","le",
+            "lea","lef","leg","lep","let","li","lie","lif","lik","lim","lin","liq","lit","liv","lo","loc","loi",
+            "lon","loo","los","lov","low","lul","lur","ly","m","ma","mag","mah","maj","mal","mam","man","mani",
+            "mant","mar","mark","mars","mass","mast","mat","may","me","mec","med","meg","mem","men","mer","mess",
+            "met","mi","mid","mil","mill","min","mini","mir","mis","misl","mist","mit","mo","mod","moi","mon",
+            "mono","moo","mor","mort","mot","mou","mov","mud","mul","mur","mus","mw","n","na","nat","natu","ne",
+            "nee","nei","nes","neu","nex","nil","no","nom","non","nor","not","nov","num","nut","o","ob","obs",
+            "obso","oc","od","of","off","ol","om","on","op","oph","opp","or","ord","ori","ory","ot","ou","out",
+            "ov","ove","over","ovi","p","pa","pai","pal","palp","pan","pap","par","para","parl","parth","parts",
+            "pas","past","pat","patt","pay","pe","ped","pel","pen","pep","per","peri","perm","pers",
+            "perso","peru","pet","ph","phi","pho","phy","pic","pig","pil","pin","pip","pit","pl","pla","plas",
+            "play","ple","pli","plu","plut","po","pok","pol","poly","pon","pop","por","pos","poss","post","pott",
+            "pow","pra","prec","pred","pref","prem","prep","pres","prest","prev","prim","prin","pris","pro",
+            "proc","prof","prog","prol","prom","prop","propo","pros","prot","prov","pru","pt","pu","pul","pun",
+            "pur","purs","put","q","qu","qua","que","qui","quin","quo","r","ra","rad","rai","ral","ran","rap",
+            "rat","rav","rea","real","reas","rec","reci","reco","recov","red","redu","ref","refr","reg","regr",
+            "rei","rel","reli","rem","remn","ren","rep","repl","repr","repu","res","resi","reso","resp","rest",
+            "ret","rets","rev","revo","rh","ri","rif","rig","rio","rit","rob","roe","rom","roo","rot","rou","row",
+            "rub","rug","run","rur","s","sa","saf","sai","sal","sam","san","sar","sat","sav","sc","sca","scat",
+            "sch","sci","sco","scr","scre","scru","se","sea","sec","sect","see","sei","sel","self","sem","sen",
+            "sent","sep","ser","ses","set","sex","sh","sha","shar","she","shel","shi","shir","sho","shor","shou",
+            "show","shr","sic","sid","sig","sil","sim","sin","sink","site","ske","ski","sky","sl","sle","sli",
+            "slo","slow","small","sme","smo","sn","sno","snu","soc","sof","sol","sols","song","sore","sou","sout",
+            "spac","spark","spec","spect","spee","spi","spin","spit","split","spo","spo","spr","spu","sq","ss",
+            "st","sta","stal","stan","stap","star","stat","stea","stem","ster","sti","stin","sto","stor","str",
+            "stra","stre","str","stri","stro","stud","stun","sty","subj","subp","subs","suc","suf","sul","sun",
+            "sup","supe","sup","sur","surr","sus","swa","swe","swell","swi","sym","syn"
+        ]
+        function comp(a,b){
+            if(a>b){return 1;}
+            if(a==b){return 0;}
+            return -1;
+        }
+        function track(a){
+            let x=0, y=P.length-1, z=0;
+            let i=0;
+            while(true){i++;
+                if(i>10){break;}
+                z=Math.floor((x+y)/2);
+                let n=comp(a,P[z]);
+                if(n==1){x=z;}
+                else if(n==-1){y=z;}
+                if(n==0 || x==y || x+1==y){break;}
+            }
+            z=Math.floor((x+y)/2);
+            return z;
+        }
+        function test(){
+            for(let i=1;i<P.length;i++){
+                if(comp(P[i],P[i-1])==-1){console.log("Orderless "+P[i]+" "+(i+1));}
+            }
+        }
+        function show(){
+            let w=track(X.value);
+            Z.innerHTML=`Check page number ${w+1}`
+        }
+        Y.addEventListener("click",show);
+    </script>
+</body>
+</html>
